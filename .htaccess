@@ -1,0 +1,39 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /projects/praveen/m/motorstation/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+DirectoryIndex index.html index.php
+
+ErrorDocument 404 /404.php
+
+
+
+
+RewriteRule ^home$ index.php [L]
+RewriteRule ^about$ about-us.php [L]
+RewriteRule ^brands$ brands.php [L]
+RewriteRule ^services$ services.php [L]
+RewriteRule ^feedback$ feedback.php [L]
+RewriteRule ^contact$ contact.php [L]
+
+
+
+
+
+
+
+RewriteRule ^error$ error.php [L]
+RewriteRule ^404error$ 404.php [L]
+
+
+
+RewriteEngine on
+rewritecond %{http_host} ^futureproperty.in [nc]
+rewriterule ^(.*)$ https://www.futureproperty.in/$1 [r=301,nc]
+
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+

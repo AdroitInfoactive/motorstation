@@ -1,0 +1,160 @@
+/*======1-level or 2-level or 3-level navigation=======*/
+body 
+{	
+	background:url(../images/seamless_leaf_pattern_01.jpg) repeat scroll 0 0;
+ /*background:url(images/top_bg.jpg);*/
+	
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+#navwrapper{ clear:both;}
+
+#nav {border:1px solid #ccc;
+background: #ffffff;
+background: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+padding: 0;margin:0px 0 10px 0;list-style: none;display: block;float: left;width: 100%; 
+}
+#nav li {
+	float: left;
+	position: relative;
+}
+#nav li:after {
+	content: "|";
+	padding: 0 24px;
+	line-height:40px;
+	color: #999;
+}
+#nav li:last-child:after {
+	display: none !important;
+}
+#nav li:first-child {
+	padding: 0 0 0 20px;
+}
+#nav a {
+	float: left;
+	height: 40px;
+	color: #444;
+	font:16px/40px Arial, Helvetica, sans-serif;
+	text-decoration: none;
+	outline:none;
+}
+#nav li:hover >a {
+	color: #000;
+	text-decoration: none;
+}
+*html #nav li a:hover {
+	color: #000;
+	text-decoration: none;
+}
+/* Sub-nav */
+#nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: none;
+	position: absolute;
+	top: 42px;
+	left: 0;
+	z-index: 99999;
+	background: #fff;
+	border:1px solid #ccc;
+}
+#nav ul li {
+	left: 0;
+	border: none
+}
+#nav ul ul {
+	top: 0;
+	left: 150px
+}
+#nav ul li {
+	float: none;
+	margin: 0;
+	padding: 0;
+	display: block
+}
+#nav ul li:after {
+	content: "|";
+	display: none;
+	color: #ccc
+}
+#nav ul li:first-child {
+	padding: 0px;
+}
+#nav ul li:last-child {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none
+}
+#nav ul a {
+	padding: 8px;
+	height: 5px;
+	width: 160px;
+	height: auto;
+	line-height: 1;
+	display: block;
+	white-space: nowrap;
+	float: none;
+	text-transform: capitalize;
+font:14px Arial, sans-serif;
+	color: #000;
+	border-bottom: 1px solid #e3e3e3;
+}
+#nav ul li:last-child a {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-bottom: none;
+}
+*html #nav ul a {
+	height: 5px
+}
+*:first-child+html #nav ul a {
+	height: 5px
+}
+#nav ul a:hover {
+	background: #ddd;
+}
+*html #nav ul a:hover {
+	background: #ddd;
+}
+#nav ul ul li:first-child a:after {
+	left: -8px;
+	top: 12px;
+	width: 0;
+	height: 0;
+	border-left: 0;
+	border-bottom: 5px solid transparent;
+	border-top: 5px solid transparent;
+	/*border-right: 8px solid #444*/
+}
+#nav ul li:first-child a:hover:after {
+	/*border-bottom-color: #04acec*/
+	border-right-color: transparent
+}
+#nav ul ul li:first-child a:hover:after {
+	/*border-right-color: #04acec;*/
+	border-bottom-color: transparent
+}
+#nav:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: "";
+	clear: both;
+	height: 0
+}
+* html #nav {
+	zoom: 1
+}
+*:first-child+html #nav {
+	zoom: 1
+}
