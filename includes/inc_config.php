@@ -17,6 +17,6 @@ $u_prjct_mnurl = "https://www.motorstation.in/";
 $prjct_dmn = "motorstation.in/";
 $u_prjct_email = "info" . "@$prjct_dmn";
 $u_prjct_email_info = "info" . "@$prjct_dmn";
-$rtpth = "/projects/praveen/m/motorstation/";
+$rtpth = "/projects/m/motorstation/";
 $site_logo = '/assets/img/logo/motor-station-logo-1.png';
 ?>

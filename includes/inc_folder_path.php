@@ -22,6 +22,7 @@
 	$u_gsmlevnt_fldnm = "events/photos/";  
 	$u_gsmlofr_fldnm  = "offer/";  	
 	$gusrbnr_fldnm 	= "banner/";
+	$gusrbnr_fldnm1	= "banner/";
 	$g_phtbimg_fldnm   = "../photos/";
 	$dwnfl_upldpth     = '../dwnfle/';  //FOLDER THAT WILL CONTAIN THE BIG IMAGES
 	

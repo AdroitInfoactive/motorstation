@@ -1,4 +1,10 @@
 <?php
+error_reporting(0);
+include_once 'includes/inc_nocache.php'; // Clearing the cache information
+include_once 'includes/inc_connection.php'; //Make connection with the database  	
+include_once "includes/inc_config.php";	//path config file
+include_once "includes/inc_usr_functions.php"; //Including user session value
+include_once "includes/inc_folder_path.php"; //Including user session value
 $page_title = "Product Display | Motor Station";
 $page_seo_title = "Product Display | Motor Station";
 $db_seokywrd = "";
@@ -6,6 +12,12 @@ $db_seodesc = "";
 $current_page = "home";
 $body_class = "homepage";
 include('header.php');
+$brand=$_REQUEST['vehbrnd'];
+$veh_typ=$_REQUEST['type'];
+$prd_code=$_REQUEST['prd_code'];
+$prd_name=$_REQUEST['prd_name'];
+
+
 ?>
 
 
@@ -19,11 +31,13 @@ include('header.php');
                         <ul>
                             <li><a href="<?php echo $rtpth; ?>home">Home</a></li>
                             <li><a href="brands.php"><span>Brands</span></a></li>
-                            <li><span>Yokohama</span></li>
-                            <li><span>Product Name</span></li>
+                            <li><span><?php echo $brand;?></span></li>
+                            <li><span><?php echo $veh_typ;?></span></li>
+
+                            <li><span><?php echo $prd_name;?></span></li>
                         </ul>
                     </div>
-                    <h3 class="page__title mt-20">Product Name</h3>
+                    <h3 class="page__title mt-20"><?php echo $prd_name;?></h3>
                 </div>
             </div>
         </div>

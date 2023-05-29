@@ -1,5 +1,12 @@
 
 <?php
+
+error_reporting(0);
+include_once 'includes/inc_nocache.php'; // Clearing the cache information
+include_once 'includes/inc_connection.php'; //Make connection with the database  	
+include_once "includes/inc_config.php";	//path config file
+include_once "includes/inc_usr_functions.php"; //Including user session value
+include_once "includes/inc_folder_path.php"; //Including user session value
 $page_title = "Home | Motor Station";
 $page_seo_title = "Home | Motor Station";
 $db_seokywrd = "";
@@ -9,69 +16,67 @@ $body_class = "homepage";
 include('header.php');
 ?>
 
-
+		<?php 
+					$sqrybnr_mst1 = "SELECT bnrm_desc, bnrm_name, bnrm_lnk, bnrm_imgnm, bnrm_sts from bnr_mst where bnrm_sts='a'";
+					$srsbnr_mst = mysqli_query($conn,$sqrybnr_mst1);
+					$cnt_recs1 = mysqli_num_rows($srsbnr_mst);
+					if($cnt_recs1 > 0)
+								{?>
+								 <section class="slider-area fix">
+            <div class="swiper main-slider swiper-container swiper-container-fade">
+						<div class="swiper-wrapper p-relative">   
+				
 
         <!-- slider-area-start  -->
-        <section class="slider-area fix">
-            <div class="swiper main-slider swiper-container swiper-container-fade">
-                <div class="swiper-wrapper p-relative">
+       
+								<?php
+
+									while($srowbnr_mst=mysqli_fetch_assoc($srsbnr_mst))
+									{
+										$db_desc = $srowbnr_mst['bnrm_desc'];
+										$db_subname = $srowbnr_mst['bnrm_name'];
+										$db_sts  = $srowbnr_mst['bnrm_sts'];
+										$db_szchrt = $srowbnr_mst['bnrm_imgnm'];
+										$imgnm = $db_szchrt;
+										$imgpath = $gusrbnr_fldnm1.$imgnm;
+										if(($imgnm !="") && file_exists($imgpath))
+										{
+											//echo "<img src='$imgpath' width='50pixel' height='50pixel'>"; 
+										$baner= $imgpath;   
+										}
+										else
+										{
+											echo "NA";            
+										}
+										?>
+										
+										?>
+										
                     <div class="item-slider sliderm-height p-relative swiper-slide">
-                        <div class="slide-bg" data-background="assets/img/slider/slider-01.jpg"></div>
+                        <div class="slide-bg" data-background="<?php echo $baner;?>"></div>
                         <div class="container">
                             <div class="row ">
                                 <div class="col-lg-12">
                                     <div class="slider-contant mt-25">
-                                        <h2 class="slider-title" data-animation="fadeInUp" data-delay=".6s">Best place to get your
-                                            <br>Car repaired
+                                        <h2 class="slider-title" data-animation="fadeInUp" data-delay=".6s"><?php echo 	$db_subname;?>
+                                            <br><?php echo $db_desc;?>	
                                         </h2>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="item-slider sliderm-height p-relative swiper-slide">
-                        <div class="slide-bg" data-background="assets/img/slider/slider-02.jpg"></div>
-                        <div class="container">
-                            <div class="row ">
-                                <div class="col-lg-12">
-                                    <div class="slider-contant mt-25">
-                                        <h2 class="slider-title" data-animation="fadeInUp" data-delay=".6s">Quality Products,
-                                            <br>Quality Service
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-slider sliderm-height p-relative swiper-slide">
-                        <div class="slide-bg" data-background="assets/img/slider/slider-03.jpg"></div>
-                        <div class="container">
-                            <div class="row ">
-                                <div class="col-lg-12">
-                                    <div class="slider-contant mt-25">
-                                        <h2 class="slider-title" data-animation="fadeInUp" data-delay=".6s">Bringing Joy of
-                                            <br>Every journey
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-
-
-                </div>
+										
+										<?php } ?>
+                    
+										</div>
                 <!-- If we need navigation buttons -->
                 <div class="swiper-button-prev ms-button"><i class="far fa-long-arrow-left"></i></div>
                 <div class="swiper-button-next ms-button"><i class="far fa-long-arrow-right"></i></div>
-            </div>
+							
+          </div>
         </section>
+				<?php }?>
         <!-- slider-area-end -->
 
         <!-- Swiper Dot start -->

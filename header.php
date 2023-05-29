@@ -1,4 +1,8 @@
-<?php include_once "includes/inc_config.php"; ?>
+<?php 
+include_once 'includes/inc_nocache.php'; // Clearing the cache information
+include_once 'includes/inc_connection.php'; //Make connection with the database  	
+include_once "includes/inc_config.php";	//path config file
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -79,8 +83,18 @@
                                     <!-- <li><a href="<?php echo $rtpth; ?>brands">Products</a></li> -->
                                     <li class="has-dropdown"><a href="tyres.php">Tyres</a>
                                         <ul class="sub-menu">
-                                            <li><a href="tyres.php">Bike</a></li>
-                                            <li><a href="tyres.php">Cars</a></li>
+                                            <?php 
+                                           	$sqryvehtyp_mst = "SELECT vehtypm_id,vehtypm_name,vehtypm_img,vehtypm_sts, vehtypm_prty  from vehtyp_mst";
+                                               $srsvehtyp_mst = mysqli_query($conn, $sqryvehtyp_mst);
+                                            while ($srowvehtyp_mst = mysqli_fetch_assoc($srsvehtyp_mst)) {
+                                               $veh_name= $srowvehtyp_mst['vehtypm_name'];
+                                               $veh_id= $srowvehtyp_mst['vehtypm_id'];
+
+                                           ?>
+                                           
+                                            <li><a href="<?php echo $rtpth;?>tyres.php?type=<?php echo $veh_name;?>&id=<?php echo $veh_id;?>"><?php echo $veh_name;?></a></li>
+                                         
+                                            <?php } ?>
                                         </ul>
                                     </li>
                                     <li><a href="<?php echo $rtpth; ?>services">Services</a></li>
