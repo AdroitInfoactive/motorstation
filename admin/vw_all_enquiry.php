@@ -422,7 +422,7 @@
 			?>
 			<tr <?php if($cnt%2==0){echo "bgcolor='#f9f8f8'";}else{echo "bgcolor='#F2F1F1'";}?>>
 				<td  align="left"><?php echo $cnt;?></td>
-				<td  align="left"><a href="view_enquiry_detail.php?edit=<?php echo $rowspncd_mst['gnrlenqrym_id'];?>&pg=<?php echo $pgnum;?>&countstart=<?php echo $cntstart.$loc;?>" class="leftlinks"><?php echo $rowspncd_mst['gnrlenqrym_emailid'];?></a></td>
+				<td  align="left"><a href="view_enquiry_detail.php?edit=<?php echo $rowspncd_mst['gnrlenqrym_id'];?>&pg=<?php echo $pgnum;?>&countstart=<?php echo $cntstart;?>" class="leftlinks"><?php echo $rowspncd_mst['gnrlenqrym_emailid'];?></a></td>
               	<td align="left"><?php echo $rowspncd_mst['gnrlenqrym_name'];?></td>
 				<td  align="left"><?php echo $rowspncd_mst['gnrlenqrym_crtdon'];?></td>
 				<?php /*?><td bgcolor="#f0f0f0" align="left"><?php echo $rowspncd_mst['cntym_name'];?></td>

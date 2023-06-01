@@ -21,9 +21,6 @@ include_once "includes/inc_config.php";	//path config file
 
     <?php } ?>
 
-
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Place favicon.ico in the root directory -->
@@ -81,7 +78,7 @@ include_once "includes/inc_config.php";	//path config file
                                     <li><a href="<?php echo $rtpth; ?>home">Home</a></li>
                                     <li><a href="<?php echo $rtpth; ?>about">About Us</a></li>
                                     <!-- <li><a href="<?php echo $rtpth; ?>brands">Products</a></li> -->
-                                    <li class="has-dropdown"><a href="tyres.php">Tyres</a>
+                                    <li class="has-dropdown"><a href="#">Tyres</a>
                                         <ul class="sub-menu">
                                             <?php 
                                            	$sqryvehtyp_mst = "SELECT vehtypm_id,vehtypm_name,vehtypm_img,vehtypm_sts, vehtypm_prty  from vehtyp_mst";
@@ -186,4 +183,4 @@ include_once "includes/inc_config.php";	//path config file
     <div class="body-overlay"></div>
     <!-- sidebar area end -->
 
-    <main>
+    <!-- <main> -->

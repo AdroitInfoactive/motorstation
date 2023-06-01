@@ -1,4 +1,6 @@
 <?php
+
+error_reporting(0);
 include_once 'includes/inc_nocache.php'; // Clearing the cache information
 include_once 'includes/inc_connection.php'; //Make connection with the database  	
 include_once "includes/inc_config.php";	//path config file
@@ -77,7 +79,7 @@ $id=$_REQUEST['id'];
                         <!-- <h5 class="ser__title mb-10"><a href="#">Apollo</a></h5> -->
                         <div class="ser__more-option mt-15">
 											
-												<a href="<?php echo $rtpth; ?>products.php?type=<?php echo $vehname ?>&vehbrnd=<?php echo $brnd_name ?>"> <i class="fal fa-long-arrow-right"></i></a>
+												<a href="<?php echo $rtpth; ?>products.php?type=<?php echo $vehname ?>&vehbrnd=<?php echo $brnd_name ?>"> Products<i class="fal fa-long-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
