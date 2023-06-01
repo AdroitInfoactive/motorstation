@@ -13,13 +13,13 @@
 	//Modified On   	: 07-06-2014
 	//Company 	  		: Adroit
 	/************************************************************/
-	global $id,$pg,$countstart,$fldnm;
+	global $id,$pg,$countstart,$fldnm,$loc;
 	$fldnm=$gbrnd_upldpth;
-	if(isset($_REQUEST['edit']) && $_REQUEST['edit']!=""
+	if(isset($_REQUEST['vw']) && $_REQUEST['vw']!=""
 	&& isset($_REQUEST['pg']) && $_REQUEST['pg']!=""
 	&& isset($_REQUEST['countstart']) && $_REQUEST['countstart']!="")
 	{
-		$id         = $_REQUEST['edit'];
+		$id         = $_REQUEST['vw'];
 		$pg         = $_REQUEST['pg'];
 		$countstart = $_REQUEST['countstart'];
 	}
@@ -275,7 +275,9 @@
 				  &nbsp;&nbsp;&nbsp;
                <!--   <input type="reset" class="textfeild"  name="btneprodcatrst" value="Clear" id="btneprodcatrst">
                   &nbsp;&nbsp;&nbsp;-->
-                  <input type="button"  name="btnBack" value="Back" class="textfeild" onclick="location.href='view_all_brands.php?pg=<?php echo $pg."&countstart=".$countstart.$loc;?>'"></td>
+		 <input type="button"  name="btnBack" value="Back" class="textfeild" onclick="location.href='view_all_brands.php?pg=<?php echo $pg;?>&countstart=<?php echo $countstart.$loc;?>'">	
+                
+				</td>
                 </tr>
               </form>
             </table>

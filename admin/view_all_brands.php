@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 include_once '../includes/inc_nocache.php'; //Clearing the cache information
 include_once "../includes/inc_adm_session.php"; //checking for session
 include_once "../includes/inc_connection.php"; //Making database Connection
@@ -14,7 +15,8 @@ include_once '../includes/inc_folder_path.php'; //Floder Path
 //Modified On   	: 07-06-2014
 //Company 	  	: Adroit
 /***************************************************************/
-global $fldnm;
+global $fldnm,$loc;
+
 $fldnm = $gbrnd_upldpth;
 if (
 	($_POST['hidchksts'] != "") && isset($_REQUEST['hidchksts']) ||
@@ -23,7 +25,7 @@ if (
 	$dchkval = substr($_POST['hidchksts'], 1);
 	$id = glb_func_chkvl($dchkval);
 	$chkallval = $_REQUEST['hdnallval'];
-	$updtsts = funcUpdtAllRecSts('brnd_mst', 'brndm_id', $id, 'brndm_sts', $chkallval);
+	$updtsts = funcUpdtAllRecSts($conn,'brnd_mst', 'brndm_id', $id, 'brndm_sts', $chkallval);
 	if ($updtsts == 'y') {
 		$msg = "<font color=red>Record updated successfully</font>";
 	} elseif ($updtsts == 'n') {
@@ -53,7 +55,7 @@ if (($_POST['hidchkval'] != "") && isset($_REQUEST['hidchkval'])) {
 		$zimg[$i] = glb_func_chkvl($srowbrnd_mst['brndm_zmimg']);
 		$zimgpth[$i] = $fldnm . $zimg[$i];
 	}
-	$delsts = funcDelAllRec('brnd_mst', 'brndm_id', $did);
+	$delsts = funcDelAllRec($conn,'brnd_mst', 'brndm_id', $did);
 	if ($delsts == 'y') {
 		for ($i = 0; $i < $count; $i++) {
 			if (($img[$i] != "") && file_exists($imgpth[$i])) {
@@ -302,7 +304,7 @@ if (!in_array(1, $sesvalary)) {
 												<?php echo $cnt; ?>
 											</td>
 											<td align="left" valign="top">
-												<a href="view_brands_detail.php?edit=<?php echo $srowbrnd_mst['brndm_id']; ?>&pg=<?php echo $pgnum; ?>&countstart=<?php echo $cntstart . $loc; ?>"
+												<a href="view_brands_detail.php?vw=<?php echo $srowbrnd_mst['brndm_id']; ?>&pg=<?php echo $pgnum; ?>&countstart=<?php echo $cntstart . $loc; ?>"
 													class="leftlinks"><?php echo $srowbrnd_mst['brndm_name']; ?></a>
 											</td>
 											<td align="center" valign="top">

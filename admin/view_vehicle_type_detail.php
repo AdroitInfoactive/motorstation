@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 	include_once '../includes/inc_nocache.php';      //Clearing the cache information
 	include_once "../includes/inc_adm_session.php";  //checking for session
 	include_once "../includes/inc_connection.php";   //Making database Connection
@@ -13,7 +14,7 @@
 	//Modified On   	: 07-06-2014
 	//Company 	  		: Adroit
 	/************************************************************/
-	global $id,$pg,$countstart,$fldnm;
+	global $id,$pg,$countstart,$fldnm,$loc;
 	$fldnm=$gvehtyp_upldpth;
 	if(isset($_REQUEST['edit']) && $_REQUEST['edit']!=""
 	&& isset($_REQUEST['pg']) && $_REQUEST['pg']!=""
@@ -92,8 +93,8 @@
 <script language="javascript">	
       function update1()//for update product details
 	  {
-      document.frmproddtl.action="edit_vehicle_type.php?<?php echo $loc;?>";
-			document.frmproddtl.submit();
+      document.frmedtvehtyp.action="edit_vehicle_type.php?<?php echo $loc;?>";
+			document.frmedtvehtyp.submit();
 	  }
 </script>
 <script language="javascript" type="text/javascript">
@@ -126,10 +127,7 @@
 			}		
 		}
 	}	
-  function update(){
-			document.frmproddtl.action="edit_products.php?<?php echo $loc;?>";
-			document.frmproddtl.submit();
-		}
+
 	</script>
 	<script language="JavaScript" type="text/javascript" src="wysiwyg.js"></script>
 </head>

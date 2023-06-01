@@ -14,7 +14,7 @@
 	//Modified On   	: 07-06-2014
 	//Company 	  		: Adroit
 	/************************************************************/
-	global $id,$pg,$countstart,$fldnm;
+	global $id,$pg,$countstart,$fldnm,$loc;
 	$fldnm=$gbrnd_upldpth;
 	if(isset($_POST['btnedtbrnd']) && ($_POST['btnedtbrnd'] != "") && 	
 	   isset($_POST['txtname']) && ($_POST['txtname'] != "") && 

@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 include_once '../includes/inc_config.php';
 include_once '../includes/inc_nocache.php'; // Clearing the cache information
 include_once '../includes/inc_adm_session.php'; //checking for session
@@ -28,7 +29,7 @@ if (
 	$dchkval = substr($_POST['hidchksts'], 1);
 	$id = glb_func_chkvl($dchkval);
 	$chkallval = glb_func_chkvl($_POST['hdnallval']);
-	$updtsts = funcUpdtAllRecSts('bnr_mst', 'bnrm_id', $id, 'bnrm_sts', $chkallval);
+	$updtsts = funcUpdtAllRecSts($conn,'bnr_mst', 'bnrm_id', $id, 'bnrm_sts', $chkallval);
 	if ($updtsts) {
 		$msg = "<font color=FF6600>Record updated successfully</font>";
 	} else {
@@ -67,7 +68,7 @@ if (isset($_POST['hidchkval']) && trim($_POST['hidchkval']) != "") {
 		$smlimg[$i] = glb_func_chkvl($srowprodimgd_dtl['bnrm_imgnm']);
 		$smlimgpth[$i] = $gbnr_fldnm . $smlimg[$i];
 	}
-	$delsts = funcDelAllRec('bnr_mst', 'bnrm_id', $did);
+	$delsts = funcDelAllRec($conn,'bnr_mst', 'bnrm_id', $did);
 	if ($delsts == 'y') {
 		for ($i = 0; $i < $count; $i++) {
 			if (($smlimg[$i] != "") && file_exists($smlimgpth[$i])) {

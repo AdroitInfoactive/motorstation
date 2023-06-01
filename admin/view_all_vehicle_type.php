@@ -24,7 +24,7 @@ if (
 	$dchkval = substr($_POST['hidchksts'], 1);
 	$id = glb_func_chkvl($dchkval);
 	$chkallval = $_REQUEST['hdnallval'];
-	$updtsts = funcUpdtAllRecSts('vehtyp_mst', 'vehtypm_id', $id, 'vehtypm_sts', $chkallval);
+	$updtsts = funcUpdtAllRecSts($conn,'vehtyp_mst', 'vehtypm_id', $id, 'vehtypm_sts', $chkallval);
 	if ($updtsts == 'y') {
 		$msg = "<font color=red>Record updated successfully</font>";
 	} elseif ($updtsts == 'n') {
@@ -54,7 +54,7 @@ if (($_POST['hidchkval'] != "") && isset($_REQUEST['hidchkval'])) {
 		$zimg[$i] = glb_func_chkvl($srowvehtyp_mst['vehtypm_zmimg']);
 		$zimgpth[$i] = $fldnm . $zimg[$i];
 	}
-	$delsts = funcDelAllRec('vehtyp_mst','vehtypm_id',$did);
+	$delsts = funcDelAllRec($conn,'vehtyp_mst','vehtypm_id',$did);
 	if ($delsts == 'y') {
 		for ($i = 0; $i < $count; $i++) {
 			if (($img[$i] != "") && file_exists($imgpth[$i])) {

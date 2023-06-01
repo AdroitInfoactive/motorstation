@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 	include_once '../includes/inc_nocache.php'; // Clearing the cache information
 	include_once "../includes/inc_adm_session.php";//checking for session
 	include_once "../includes/inc_connection.php";//Making database Connection
@@ -14,7 +15,7 @@
 	//Modified On   	: 07-06-2014
 	//Company 	  		: Adroit
 	/************************************************************/
-	global $id,$pg,$countstart,$fldnm;
+	global $id,$pg,$countstart,$fldnm,$loc;
 	$fldnm=$gvehtyp_upldpth;
 	if(isset($_POST['btnedtvehtyp']) && ($_POST['btnedtvehtyp'] != "") && 	
 	   isset($_POST['txtname']) && ($_POST['txtname'] != "") && 
@@ -129,7 +130,7 @@
 		name = document.getElementById('txtname').value;		
 		if((name != "") && (id != ""))
 		{
-			var url = "chkvalidname.php?vehtypname="+name+"&vehtypid="+id;
+			var url = "chkvalidname.php?vehtypname="+name+"&vehtypmid="+id;
 			xmlHttp	= GetXmlHttpObject(stateChanged);
 			xmlHttp.open("GET", url , true);
 			xmlHttp.send(null);
