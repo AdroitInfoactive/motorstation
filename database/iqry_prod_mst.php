@@ -65,9 +65,10 @@
 						   '$seodesc','$seokywrd','$seoh1ttl','$seoh1desc',
 						   '$seoh2ttl','$seoh2desc','$prior','$sts',
 						   '$dt','$ses_admin')";		
-			$irsprod_mst = mysqli_query($conn,$iqryprod_mst) or die(mysql_error());			
+			$irsprod_mst = mysqli_query($conn,$iqryprod_mst) or die(mysql_error());		
+			$prodid	= mysqli_insert_id($conn);	
 			if($irsprod_mst==true){	
-				$prodid	= mysqli_insert_id();
+			
 				
 				/* -----------  Sizes ----------------------*/
 				
@@ -152,13 +153,14 @@
 								}		
 							}
 							if($sdest !='' || $bdest !=''){
-								$iqryprodimg_dtl ="insert into prodimg_dtl(
+								echo $iqryprodimg_dtl ="insert into prodimg_dtl(
 												   prodimgd_title,prodimgd_simg,prodimgd_bimg,prodimgd_sts,
 												   prodimgd_lnk,prodimgd_prty,prodimgd_prodm_id,prodimgd_crtdon,
 												   prodimgd_crtdby)values(											
 												   '$phtname','$sdest','$bdest','$sts',
 												   '$lnkval	','$prtyval','$prodid','$dt',
 												   '$ses_admin')";
+												
 								$rsprod_dtl   = mysqli_query($conn,$iqryprodimg_dtl);
 								if($rsprod_dtl == true){
 									if(($ssource!='none') && ($ssource!='') && ($sdest != "")){ 

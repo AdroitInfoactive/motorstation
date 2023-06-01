@@ -21,7 +21,7 @@
 	*/
 	/**********************************************************************/
 	
-	function  funcDispPag($cls,$rdval,$qrystr,$recprpg,$cntstart,$pgnum,$distinct,$fldnm)
+	function  funcDispPag($conn,$cls,$rdval,$qrystr,$recprpg,$cntstart,$pgnum,$distinct,$fldnm)
 	{ 		
 	    $loc = $rdval;
 		$temp          	  = explode("from",$qrystr);

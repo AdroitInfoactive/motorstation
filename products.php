@@ -40,12 +40,12 @@ $veh_typ=$_REQUEST['type'];
 <!-- slider-area-end -->
 
 <?php 
-$sqlprod_mst = "SELECT prodm_vehtypm_id,prodm_id,prodm_name,prodm_brndm_id,prodm_code,prodm_sts,vehtypm_id,vehtypm_name,brndm_id,brndm_name,brndm_img,brndm_zmimg,brndm_sts,vehtypm_sts,prodimgd_prodm_id,prodimgd_id,prodimgd_sts,prodimgd_simg,prodimgd_bimg from prod_mst
+ $sqlprod_mst = "SELECT prodm_vehtypm_id,prodm_id,prodm_name,prodm_brndm_id,prodm_code,prodm_sts,vehtypm_id,vehtypm_name,brndm_id,brndm_name,brndm_img,brndm_zmimg,brndm_sts,vehtypm_sts,prodimgd_prodm_id,prodimgd_id,prodimgd_sts,prodimgd_simg,prodimgd_bimg from prod_mst
 	 LEFT join vehtyp_mst on vehtyp_mst.vehtypm_id=	prod_mst.prodm_vehtypm_id
 	LEFT join brnd_mst on brnd_mst.brndm_id=prod_mst.prodm_brndm_id
 	LEFT join  prodimg_dtl on  prodimg_dtl.prodimgd_prodm_id=prod_mst.prodm_id
   where 
-		prodm_id !='' and prodm_sts ='a' and vehtypm_sts='a' and brndm_sts='a' and vehtypm_name='$veh_typ' and brndm_name='$brand'  ";
+		prodm_id !='' and prodm_sts ='a' and vehtypm_sts='a' and brndm_sts='a' and vehtypm_name='$veh_typ' and brndm_name='$brand' group by prodm_id ";
 
 $rwsprod_mst = mysqli_query($conn, $sqlprod_mst);
 		$prdcnt = mysqli_num_rows($rwsprod_mst);

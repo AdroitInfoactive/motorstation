@@ -12,12 +12,14 @@
 	/**************************************/
 	global $gmsg,$loc,$rowsprpg,$dispmsg,$disppg;
 	
-  	if(($_POST['hdnchksts']!="") && isset($_REQUEST['hdnchksts'])){
-		    //alert('Inside hiddensts');    
+	if(isset($_POST['hdnchksts']) && (trim($_POST['hdnchksts']) != "") || isset($_POST['hdnallval']) && (trim($_POST['hdnallval']) != "")){
+		    //alert('Inside hiddensts'); 
+			   
 			$dchkval = substr($_POST['hdnchksts'],1);
 			
-			$id  	 = glb_func_chkvl($dchkval);		
-			$updtsts = funcUpdtAllRecSts('prod_mst','prodm_id',$id,'prodm_sts');		
+			$id  = glb_func_chkvl($dchkval);
+			$chkallval	= glb_func_chkvl($_POST['hdnallval']);		
+			$updtsts = funcUpdtAllRecSts($conn,'prod_mst','prodm_id',$id,'prodm_sts',$chkallval);		
 			if($updtsts == 'y'){
 				$gmsg = "<font color='#fda33a'>Record updated successfully</font>";
 			}
@@ -35,10 +37,10 @@
 			$bimg       =  array();
 			$bimgpth    =  array();
 			for($i=0;$i<$count;$i++){	
-				$sqryprod_mst="select 
-								   prodimgd_simg,prodimgd_bimg,
+				$sqryprod_mst="SELECT 
+							  prodimgd_simg,prodimgd_bimg,
 								from 
-								  prodimg_dtl
+								 prodimg_dtl
 								where
 								   prodimgd_prodm_id=$del[$i]"; 			
 				$srsprod_mst=mysqli_query($conn,$sqryprod_mst);
@@ -55,10 +57,10 @@
 					 }
 				 }
 			}
-			$delsts1 = funcDelAllRec('prodimg_dtl','prodimgd_prodm_id',$did);	
-			$delsts3 = funcDelAllRec('prodprc_dtl','prodprcd_prodm_id',$did);
+			//$delsts1 = funcDelAllRec('prodimg_dtl','prodimgd_prodm_id',$did);	
+			//$delsts3 = funcDelAllRec('prodprc_dtl','prodprcd_prodm_id',$did);
 			//$delsts2 = funcDelAllRec('invntry_dtl','invntryd_prodm_id',$did);
-			$delsts = funcDelAllRec('prod_mst','prodm_id',$did);	
+			$delsts = funcDelAllRec($conn,'prod_mst','prodm_id',$did);	
 			// echo"here";		
 			if($delsts == 'y' && $delsts1 == 'y'){
 			     $msg   = "<font color=#fda33a>Record deleted successfully</font>";
@@ -223,6 +225,7 @@ include_once ('../includes/inc_fnct_ajax_validation.php');
 		 <table  width="95%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#fff"> 
              <form name="frmvwprods" id="frmvwprods" method="post" action="<?php $_SERVER['SCRIPT_FILENAME'];?>" onSubmit="return validate()">
 			  <input type="hidden" name="hdnchkval" id="hdnchkval">
+			  <input type="hidden" name="hdnallval" id="hdnallval">
 			  <input type="hidden" name="hdnchksts" id="hdnchksts">
 			  <input type="hidden" name="hdnqtyval" id="hdnqtyval">
                 <tr align="left" class='white'>
@@ -343,7 +346,7 @@ include_once ('../includes/inc_fnct_ajax_validation.php');
 				    <td width="20%" align="left" bgcolor="#FF543A"><strong>Brand</strong></td>
 					<td width="8%" align="left" title="New Arrival" bgcolor="#FF543A"><strong>Type</strong></td>	
 					<td width="3%" align="center" bgcolor="#FF543A"><strong>Rank</strong></td>			   				   
-                   	<td width="6%"  align="center" bgcolor="#FF543A"><input type="checkbox" name="Check_ctr"  id="Check_ctr" value="yes" onClick="Check(document.frmvwprods.chksts,'Check_ctr')"></td>
+                   	<td width="6%"  align="center" bgcolor="#FF543A"><input type="checkbox" name="Check_ctr"  id="Check_ctr" value="yes" onClick="Check(document.frmvwprods.chksts,'Check_ctr','hdnallval')"></td>
                 <td width="6%"  align="center" bgcolor="#FF543A"><input type="checkbox" name="Check_dctr"  id="Check_dctr" value="yes" onClick="Check(document.frmvwprods.chkdlt,'Check_dctr')"></td>
                 </tr>
                 <?php
@@ -482,7 +485,7 @@ include_once ('../includes/inc_fnct_ajax_validation.php');
 				  <td  colspan="6">&nbsp;</td>
 				  <td width="6%" align="center" valign="bottom">
 					<input name="btnsts" id="btnsts" type="button"  value="Status" 
-					onClick="updatests('hdnchksts','frmvwprods','chksts')" class="">
+					onClick="updatests('hdnchksts','frmvwprods','chksts','hdnallval')" class="">
 				  </td>
 				  <td width="6%" align="center" valign="bottom"  >
 			 		<input name="btndel" id="btndel" type="button"  value="Delete" 
@@ -491,7 +494,7 @@ include_once ('../includes/inc_fnct_ajax_validation.php');
 			  </tr>			
 			<?php						
 				//$disppg = funcDispPag('paging',$loc,$sqryprod_mst1,$rowsprpg,$cntstart, $pgnum, $conn);	
-				$disppg = funcDispPag('paging',$loc,$sqryprod_mst1,$rowsprpg,$cntstart,$pgnum,'y','prodm_id');	
+				$disppg = funcDispPag($conn,'paging',$loc,$sqryprod_mst1,$rowsprpg,$cntstart,$pgnum,'y','prodm_id');	
 				if($disppg != ""){	
 					$disppg = "<br><tr  bgcolor='#f0f0f0'><td colspan='12' align='center'>$disppg</td></tr>";
 					echo $disppg;

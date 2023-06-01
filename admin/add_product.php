@@ -669,7 +669,7 @@
 				</table>
 			</td>
 			</tr>
-				
+			<?php */?>	
 				
 		 <!---------------- Close size session ------------------>
 		 
@@ -687,7 +687,8 @@
 						</tr>
 					</table>
 				</td>
-			</tr>	<?php */?>			
+			</tr>	
+						
 			
 			<tr bgcolor="#f0f0f0">
 				<td colspan="4" align="center" >

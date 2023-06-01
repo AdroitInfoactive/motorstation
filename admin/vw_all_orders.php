@@ -12,21 +12,22 @@
 	************************************************************/
 	
 	global $msg,$loc,$disppg,$dispmsg;
-	if(isset($_REQUEST["sts"]) && (trim($_REQUEST["sts"]) != "") &&
-	   isset($_REQUEST["ordid"]) && (trim($_REQUEST["ordid"]) != "")){	   
-		$ordsts = glb_func_chkvl($_REQUEST["sts"]);
-		$id  	= glb_func_chkvl($_REQUEST["ordid"]);				
-		$updtsts = funcUpdtRecSts("crtord_mst","crtordm_id",$id,"crtordm_cartsts",$ordsts);		
-		if($updtsts == "y"){
-			$msg = "<font color='#fda33a'>Enquiry deleted successfully</font>";
-		}
-		elseif($updtsts == "n"){
-			$msg = "<font color='#fda33a'>Enquiry not deleted</font>";
-		}		
-	}	
-	/*if(isset($_REQUEST["did"]) && ($_REQUEST["did"] != "")){	
-		$did 		= glb_func_chkvl($_REQUEST["did"]);
-		$mstdelsts	= funcDelRec("crtord_mst","crtordm_id",$did);
+	// if(isset($_REQUEST["sts"]) && (trim($_REQUEST["sts"]) != "") &&
+	//    isset($_REQUEST["ordid"]) && (trim($_REQUEST["ordid"]) != "")){	   
+	// 	$ordsts = glb_func_chkvl($_REQUEST["sts"]);
+	// 	$id  	= glb_func_chkvl($_REQUEST["ordid"]);				
+	// 	$updtsts = funcUpdtRecSts($conn,"crtord_mst","crtordm_id",$id,"crtordm_cartsts",$ordsts);		
+	// 	if($updtsts == "y"){
+	// 		$msg = "<font color='#fda33a'>Enquiry deleted successfully</font>";
+	// 	}
+	// 	elseif($updtsts == "n"){
+	// 		$msg = "<font color='#fda33a'>Enquiry not deleted</font>";
+	// 	}		
+	// }
+
+	if(isset($_REQUEST["sts"]) && ($_REQUEST["sts"] != "")){	
+		$did 		= glb_func_chkvl($_REQUEST["ordid"]);
+		$mstdelsts	= funcDelRec($conn,"crtord_mst","crtordm_id",$did);
 		//$dtldelsts 	= funcDelRec("crtord_dtl","crtordd_crtordm_id",$did);		
 		if($mstdelsts == "y"){
 			// &&($dtldelsts))
@@ -35,7 +36,7 @@
 		elseif($delsts == "n"){
 			$msg = "<font color=red>Record not deleted successfully</font>";
 		}
-	}*/	
+	}
     $rowsprpg  = 20;//maximum rows per page
 	include_once "../includes/inc_paging1.php";//Includes pagination		
 	$sqrycrtord_mst1	= "select 

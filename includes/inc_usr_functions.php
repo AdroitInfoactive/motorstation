@@ -5,7 +5,8 @@
 		$newval =  htmlspecialchars(trim($cntrlval),ENT_QUOTES);
 		return $newval;		
 	}
-	function funcUpdtRecSts($tblnm,$idfldnm,$idval,$ufldnm,$curval){
+
+	function funcUpdtRecSts($conn,$tblnm,$idfldnm,$idval,$ufldnm,$curval){
 		$tblname 	= $tblnm; // Stores the table name
 		$idfldname  = $idfldnm; //Stores the id field name
 		$recid	 	= $idval; // Stores the id value
@@ -22,7 +23,7 @@
 		elseif($curfldval == 'd'){
 			$updtval = 'd';
 		}				
-		$funcuqry = "update $tblname
+		$funcuqry = "UPDATE $tblname
 				 	 set $updtfldnm = '$updtval'
 				 	 where $idfldname = $recid";
 					 
@@ -35,7 +36,7 @@
 		}		
 		$funcuqry = "";
 	}
-	function funcDelRec($tblnm,$idfldnm,$idval){
+	function funcDelRec($conn,$tblnm,$idfldnm,$idval){
 		$tblname 	= $tblnm; // Stores the table name
 		$idfldname  = $idfldnm; //Stores the id field name
 		$recid	 	= $idval; // Stores the id value		
@@ -49,34 +50,64 @@
 		}	
 		$funcdqry = "";
 	}	
-	function funcUpdtAllRecSts($tblnm,$idfldnm,$idval,$ufldnm)
-	{
+	// function funcUpdtAllRecSts($conn,$tblnm,$idfldnm,$idval,$ufldnm)
+	// {
+	// 	$tblname 	= $tblnm;    // Stores the table name
+	// 	$idfldname  = $idfldnm;  //Stores the id field name
+	// 	$recid	 	= $idval;    // Stores the id value
+	// 	$updtfldnm  = $ufldnm;   // Stores the update field name
+	// 	$updtval 	= "";
+			
+	// 	$funcuqry = "UPDATE $tblname
+	// 			 	 	  set 
+	// 				      $updtfldnm =if($updtfldnm='a','i','a') 
+	// 			 	      where $idfldname in($recid)";		
+	// 	if(mysqli_query($conn,$funcuqry))
+	// 	{
+	// 		return  "y";
+	// 	}
+	// 	else
+	// 	{
+	// 		return "n";
+	// 	}		
+	// 	$funcuqry = "";
+	// }
+	function funcUpdtAllRecSts($conn,$tblnm,$idfldnm,$idval,$ufldnm,$chkval)
+	{	
 		$tblname 	= $tblnm;    // Stores the table name
 		$idfldname  = $idfldnm;  //Stores the id field name
 		$recid	 	= $idval;    // Stores the id value
 		$updtfldnm  = $ufldnm;   // Stores the update field name
-		$updtval 	= "";
-			
-		$funcuqry = "update $tblname
-				 	 	  set 
-					      $updtfldnm =if($updtfldnm='a','i','a') 
+		$updtchkval = $chkval;   //Chkbox Value
+		$updtval 	= "";		
+		$funcuqry = "update $tblname set";
+		
+		if($updtchkval =='n'){
+			$funcuqry .= " $updtfldnm='i'";
+		}
+		elseif($updtchkval =='y'){
+			$funcuqry .= " $updtfldnm='a'";
+		}		
+		if($updtchkval == ''){	
+		$funcuqry .= " $updtfldnm =if($updtfldnm='a','i','a') 
 				 	      where $idfldname in($recid)";		
-		if(mysqli_query($conn,$funcuqry))
-		{
+								
+							
+		}
+		if(mysqli_query($conn,$funcuqry)){
 			return  "y";
 		}
-		else
-		{
+		else{
 			return "n";
 		}		
 		$funcuqry = "";
 	}
-	function funcDelAllRec($tblnm,$idfldnm,$idval)
+	function funcDelAllRec($conn,$tblnm,$idfldnm,$idval)
 	{
 		$tblname 	= $tblnm; // Stores the table name
 		$idfldname  = $idfldnm; //Stores the id field name
 		$recid	 	= $idval; // Stores the id value		
-		$funcdqry = "delete from $tblname
+		$funcdqry = "DELETE from $tblname
 				 	 where $idfldname in($recid)";		
 		if(mysqli_query($conn,$funcdqry))
 		{
@@ -88,7 +119,7 @@
 		}	
 		$funcdqry = "";
 	}	
-	function funcRmvFle($tblnm,$updtfldnm,$updtfldval,$idfldnm,$idval)
+	function funcRmvFle($conn,$tblnm,$updtfldnm,$updtfldval,$idfldnm,$idval)
 	{
 		$tblname 	 = $tblnm; // Stores the table name
 		$ufldname 	 = $updtfldnm; //Stores the update field name

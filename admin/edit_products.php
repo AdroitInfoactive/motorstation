@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 	include_once '../includes/inc_nocache.php'; // Clearing the cache information
     include_once '../includes/inc_adm_session.php';//Check the session is created or not
     include_once '../includes/inc_connection.php';//making the connection with database table
@@ -52,7 +53,7 @@
 		$optn = glb_func_chkvl($_POST['optn']);
 		$val  = glb_func_chkvl($_POST['val']);
 	}	*/
-	  $sqryprod_mst =   "select 
+	echo   $sqryprod_mst =   "select 
 							prodm_id,prodm_code,prodm_name,prodm_descone,
 							prodm_desctwo,prodm_mrp,prodm_op,prodm_typ,
 							prodm_prty,prodm_sts,brndm_id,prodm_seotitle,
@@ -523,7 +524,7 @@ function stchngexp_edititem(){
 					 while($srowvehtyp_mst = mysqli_fetch_assoc($srsvehtyp_mst))
 					 { 
 					    $slctd="";
-					    if($srowvehtyp_mst['vehtypm_id']==$srowsvehtyp_mst['vehtypm_id'])
+					    if($srowvehtyp_mst['vehtypm_id']==$srowsprod_mst['prodm_vehtypm_id'])
 						{
 						   $slctd="selected";
 						}
@@ -872,8 +873,8 @@ function stchngexp_edititem(){
                 <td width="10%"><strong>Name</strong></td>
 				<td width="10%"><strong>Link</strong></td>
 				<td width="25%" align='center' colspan='2'><strong>Small Image</strong></td>
-				<td width="20%" align='center' colspan='2'><strong>Big Image</strong></td>
-				<td width="20%" align='right'><strong>Rank</strong></td>
+				<td width="15%" align='center' colspan='2'><strong>Big Image</strong></td>
+				<td width="10%" align='right'><strong>Rank</strong></td>
 				<td width="10%"><strong>Status</strong></td>
 				
                 <td width="10%"><strong>Remove</strong></td>

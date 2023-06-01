@@ -24,7 +24,7 @@
 		if(($_POST['hidchkval']!="") && isset($_REQUEST['hidchkval'])){
 			$dchkval = substr($_POST['hidchkval'],1);
 			$did 	= glb_func_chkvl($dchkval);			
-			$delsts = funcDelAllRec('gnrlenqry_mst','gnrlenqrym_id',$did);	
+			$delsts = funcDelAllRec($conn,'gnrlenqry_mst','gnrlenqrym_id',$did);	
 			if($delsts == 'y'){
 				$msg = "<font color='#fda33a'>Record deleted successfully</font>";
 			}
