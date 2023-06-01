@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 	include_once '../includes/inc_nocache.php'; // Clearing the cache information
 	include_once "../includes/inc_adm_session.php";//checking for session
 	include_once "../includes/inc_connection.php";//Making database Connection
@@ -14,6 +15,7 @@
 
 	if(isset($_REQUEST['oid']) && (trim($_REQUEST['oid']) != "")){
 		$cid = addslashes(trim($_REQUEST['oid']));
+		
 		$loc 		= "";
 		$txtsrchnm  = "";
 		$lstprodid	= "";
@@ -48,19 +50,21 @@
 		if(isset($_REQUEST['chkexact']) && trim($_REQUEST['chkexact']) != ''){					
 			$chkexact  		=  glb_func_chkvl($_REQUEST['chkexact']); 		
 			$loc .= "&chkexact=$chkexact";
-		}		
-		$sqrycrtord_mst	= "select 								
+		}	
+			
+	 $sqrycrtord_mst	= "SELECT 								
 								crtordm_id,crtordm_name,crtordm_adrs,crtordm_phno,
 								crtordm_email,crtordm_cmpnynm,crtordm_dsgn,crtordm_fxno,						
 								crtordm_zpcode,crtordm_orgqtn,crtordm_qry,
 								date_format(crtordm_crtdon,'%d-%m-%Y') as crtordm_crtdon_dt,
-								date_format(crtordm_crtdon,'%h:%i:%s') as crtordm_crtdon_tm,
-						   		cntrym_name,cntym_name,ctym_name
+								date_format(crtordm_crtdon,'%h:%i:%s') as crtordm_crtdon_tm
+						   	
 						   from 
 								crtord_mst  
-								inner join vw_cntnt_cntry_cnty_cty_mst on ctym_id = crtordm_ctym_id								
+													
 						   where
 								crtordm_id='$cid'";
+								// echo"here";exit;
 		$srscrtord_mst = mysqli_query($conn,$sqrycrtord_mst);
 		$cntrec		   = mysqli_num_rows($srscrtord_mst);
 		if($cntrec > 0){
