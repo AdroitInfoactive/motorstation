@@ -54,7 +54,7 @@
 			$gmsg = "Duplicate product code. Record not saved";
 		 }
 		 else{	
-		   echo $iqryprod_mst="insert into prod_mst(
+		 $iqryprod_mst="insert into prod_mst(
 						   prodm_code,prodm_name,prodm_descone,prodm_desctwo,
 						   prodm_brndm_id,prodm_vehtypm_id,prodm_typ,prodm_seotitle,
 						   prodm_seodesc,prodm_seokywrd,prodm_seohonetitle,prodm_seohonedesc,
@@ -153,7 +153,7 @@
 								}		
 							}
 							if($sdest !='' || $bdest !=''){
-								echo $iqryprodimg_dtl ="insert into prodimg_dtl(
+								 $iqryprodimg_dtl ="insert into prodimg_dtl(
 												   prodimgd_title,prodimgd_simg,prodimgd_bimg,prodimgd_sts,
 												   prodimgd_lnk,prodimgd_prty,prodimgd_prodm_id,prodimgd_crtdon,
 												   prodimgd_crtdby)values(											

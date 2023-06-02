@@ -1,6 +1,6 @@
 <?php
 
-//error_reporting(0);
+error_reporting(0);
 include_once 'includes/inc_nocache.php'; // Clearing the cache information
 include_once 'includes/inc_connection.php'; //Make connection with the database  	
 include_once "includes/inc_config.php";	//path config file
@@ -60,7 +60,7 @@ if ($cnt_recs1 > 0) { ?>
 					$imgpath = $gusrbnr_fldnm1 . $imgnm;
 					if (($imgnm != "") && file_exists($imgpath)) {
 						//echo "<img src='$imgpath' width='50pixel' height='50pixel'>"; 
-						$baner = $imgpath;
+						$baner =$rtpth.$imgpath;
 					} else {
 						echo "NA";
 					}

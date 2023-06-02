@@ -13,7 +13,7 @@
 	$phone    = glb_func_chkvl($_POST['txtphone']);
 	$company    =  $_POST['txtcmpny'];
 	$location      =  glb_func_chkvl($_POST['txtloc']);
-       $desc   =  $_POST['txtdesc'];
+   $desc   =  $_POST['txtdesc'];
 		$curdt    =  date('Y-m-d h:i:s');
 		$iqrycrtordmst = "INSERT into crtord_mst(crtordm_name,crtordm_adrs,crtordm_phno,crtordm_email,crtordm_cmpnynm,crtordm_qry,crtordm_sts,crtordm_prty,crtordm_crtdon,crtordm_crtdby) values('$name','$location','$phone','$email','$company','$desc','a',1,'$curdt','$email')";												  
 		$irscrtordmst = mysqli_query($conn,$iqrycrtordmst) or die(mysqli_error($conn));	
@@ -39,11 +39,11 @@
 								";
 				while ($i < sizeof($u_prd)) 
 				{
-					$sqlprod_mst = "SELECT prodm_vehtypm_id,prodm_id,prodm_name,prodm_brndm_id,prodm_code,prodm_sts,vehtypm_id,vehtypm_name,brndm_id,brndm_name,brndm_img,brndm_zmimg,brndm_sts,vehtypm_sts,prodimgd_prodm_id,prodimgd_id,prodimgd_sts,prodimgd_simg,prodimgd_bimg,prodm_descone,prodm_desctwo from prod_mst
+			 	$sqlprod_mst = "SELECT prodm_vehtypm_id,prodm_id,prodm_name,prodm_brndm_id,prodm_code,prodm_sts,vehtypm_id,vehtypm_name,brndm_id,brndm_name,brndm_img,brndm_zmimg,brndm_sts,vehtypm_sts,prodimgd_prodm_id,prodimgd_id,prodimgd_sts,prodimgd_simg,prodimgd_bimg,prodm_descone,prodm_desctwo from prod_mst
 					LEFT join vehtyp_mst on vehtyp_mst.vehtypm_id=	prod_mst.prodm_vehtypm_id
 					LEFT join brnd_mst on brnd_mst.brndm_id=prod_mst.prodm_brndm_id
 					LEFT join  prodimg_dtl on  prodimg_dtl.prodimgd_prodm_id=prod_mst.prodm_id
-					where prodm10_sts ='a' and prodm_id='$u_prd[$i]' group by prodm_id";
+					where prodm_sts ='a' and prodm_id='$u_prd[$i]' group by prodm_id";
 					$rwsprod_mst = mysqli_query($conn, $sqlprod_mst);
 					$prdcnt = mysqli_num_rows($rwsprod_mst);
 					$rowsprods_mst = mysqli_fetch_assoc($rwsprod_mst);
@@ -64,7 +64,7 @@
 						$smlImgPth = $rtpth . 'products/no-img.png';
 					}
 					$crtsesval=md5($email);
-				 $iqrycrtord_dtl  ="INSERT into crtord_dtl(crtordd_sesid,crtordd_prodm_id,crtordd_qty,crtordd_sts,crtordd_crtordm_id,crtordd_crtdon,crtordd_crtdby)values('$crtsesval','$prod_id',1,'a','	$cart_id','$curdt','$email')";
+		 	 $iqrycrtord_dtl  ="INSERT into crtord_dtl(crtordd_sesid,crtordd_prodm_id,crtordd_qty,crtordd_sts,crtordd_crtordm_id,crtordd_crtdon,crtordd_crtdby)values('$crtsesval','$prod_id',1,'a','	$cart_id','$curdt','$email')";
 				$irscrtord	= mysqli_query($conn,$iqrycrtord_dtl) or die(mysqli_error($conn));	
 						$message.="<tr>
 						<td  bgcolor='#F0F0F0' ><img src=' $smlImgPth' width='100px' height='100px' /></td>

@@ -48,7 +48,7 @@ include_once "includes/inc_config.php";	//path config file
 
 
     <!-- Preloader -->
-    <div class="preloader"></div>
+    <!-- <div class="preloader"></div> -->
     <!-- pre loader area end -->
 
     <!-- back to top start -->
