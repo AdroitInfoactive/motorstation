@@ -653,7 +653,7 @@ if ($carbrndcnt > 0) { ?>
 								if ($vehbrndimgnm != '' && file_exists($vehbrndimgpth)) {
 									$vehbrndimgpth = $rtpth . $gusrbrnd_upldpth . $vehbrndimgnm;
 								} else {
-									$vehbrndimgpth = "images/no-image.png";
+									$vehbrndimgpth = "products/no-img.png";
 								}
 
 							?>

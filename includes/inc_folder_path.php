@@ -19,6 +19,8 @@
 	
 	$u_gsml_fldnm 		= "products/smlphotos/";
 	$u_gbg_fldnm 		= "products/bgphotos/";
+	$u_gsml_fldnm1		= "../products/smlphotos/"; //display img for admin
+	$u_gbg_fldnm1 		= "../products/bgphotos/";//admin side display
 	$u_gsmlevnt_fldnm = "events/photos/";  
 	$u_gsmlofr_fldnm  = "offer/";  	
 	$gusrbnr_fldnm 	= "banner/";
@@ -32,4 +34,6 @@
 	
 	$gusrbrnd_upldpth 	= "brandlogos/";
 	$gbrnd_upldpth 	   = "../brandlogos/";
+	//$gusrbrnd_upldpth 	= "vehicletypimg/";
+	$gvehtyp_upldpth 	   = "../vehicletypimg/";
 ?>

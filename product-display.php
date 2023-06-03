@@ -75,28 +75,29 @@ if ($prdcnt > 0) { ?>
 						<?php
 						$sqlbimgdtl = "SELECT prodimgd_bimg from prodimg_dtl where prodimgd_prodm_id = $prd_id order by prodimgd_prty desc";
 						$resbimgdtl = mysqli_query($conn, $sqlbimgdtl);
-						$cntbgimg = mysqli_num_rows($resbimgdtl);
+						 $cntbgimg = mysqli_num_rows($resbimgdtl);
 						if ($cntbgimg > 0) { ?>
 							<div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2 prdt-main-display wd-100-over-hdn">
 								<div class="swiper-wrapper" id="lightgallery-prdt">
 									<?php
 									while ($rwsimgdtl = mysqli_fetch_array($resbimgdtl)) {
+										
 										$bgImgNm = $rwsimgdtl['prodimgd_bimg'];
 										if ($bgImgNm != "") {
 											$bgImgPth = $u_gbg_fldnm . $bgImgNm;
 											if (file_exists($bgImgPth)) {
 												$bgImgPth = $rtpth . $u_gbg_fldnm . $bgImgNm;
 											} else {
-												$bgImgPth = $rtpth . 'products/no-img.png';
+												$bgImgPth = $rtpth .'products/no-img.png';
 											}
 										} else {
-											$bgImgPth = $rtpth . 'products/no-img.png';
+											$bgImgPth = $rtpth .'products/no-img.png';
 										}
 									?>
 										<!-- loop big img -->
 										<div class="swiper-slide" data-src="<?php echo $bgImgPth; ?>">
 											<a href="">
-												<img class="img-responsive w-100" src="<?php echo $bgImgPth; ?>" alt="">
+												<img class="img-responsive w-100" src="<?php echo $bgImgPth; ?>">
 											</a>
 										</div>
 									<?php
@@ -109,10 +110,24 @@ if ($prdcnt > 0) { ?>
 							</div>
 						<?php
 						}
+						else{
+							?>
+							<div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2 prdt-main-display wd-100-over-hdn">
+								<div class="swiper-wrapper" id="lightgallery-prdt">
+								<div class="swiper-slide" data-src="<?php echo $rtpth .'products/no-img.png'; ?>">
+											<a href="">
+												<img class="img-responsive w-100" src="<?php echo $rtpth .'products/no-img.png'; ?>">
+											</a>
+										</div>
+								</div>
+							</div>
+									<?php
+
+						}
 						$sqlsimgdtl = "SELECT prodimgd_simg from prodimg_dtl where prodimgd_prodm_id = $prd_id order by prodimgd_prty desc";
 						$resimgdtl = mysqli_query($conn, $sqlsimgdtl);
 						$cntsimg = mysqli_num_rows($resimgdtl);
-						if ($cntsimg > 0) { ?>
+						if ($cntsimg > 0 ) { ?>
 							<div thumbsSlider="" class="swiper mySwiper wd-100-over-hdn">
 								<div class="swiper-wrapper swiper-thum-custom">
 									<?php
@@ -137,6 +152,18 @@ if ($prdcnt > 0) { ?>
 								</div>
 							</div>
 						<?php }
+						else{
+							?>
+							<div thumbsSlider="" class="swiper mySwiper wd-100-over-hdn">
+								<div class="swiper-wrapper swiper-thum-custom">
+								<div class="swiper-slide ">
+											<img src="<?php echo $rtpth . 'products/no-img.png' ?>" class="w-100" />
+								</div>
+							</div>
+							</div>
+									<?php
+
+						}
 						?>
 
 					</div>

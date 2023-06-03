@@ -14,7 +14,10 @@
 	$company    =  $_POST['txtcmpny'];
 	$location      =  glb_func_chkvl($_POST['txtloc']);
    $desc   =  $_POST['txtdesc'];
-		$curdt    =  date('Y-m-d h:i:s');
+
+   date_default_timezone_set("Asia/kolkata");
+  
+   $curdt    =  date('Y-m-d h:i:s');
 		$iqrycrtordmst = "INSERT into crtord_mst(crtordm_name,crtordm_adrs,crtordm_phno,crtordm_email,crtordm_cmpnynm,crtordm_qry,crtordm_sts,crtordm_prty,crtordm_crtdon,crtordm_crtdby) values('$name','$location','$phone','$email','$company','$desc','a',1,'$curdt','$email')";												  
 		$irscrtordmst = mysqli_query($conn,$iqrycrtordmst) or die(mysqli_error($conn));	
 		$cart_id=mysqli_insert_id($conn);

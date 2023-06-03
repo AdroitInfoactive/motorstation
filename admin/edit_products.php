@@ -53,7 +53,7 @@ error_reporting(0);
 		$optn = glb_func_chkvl($_POST['optn']);
 		$val  = glb_func_chkvl($_POST['val']);
 	}	*/
-	echo   $sqryprod_mst =   "select 
+	  $sqryprod_mst =   "select 
 							prodm_id,prodm_code,prodm_name,prodm_descone,
 							prodm_desctwo,prodm_mrp,prodm_op,prodm_typ,
 							prodm_prty,prodm_sts,brndm_id,prodm_seotitle,
@@ -90,8 +90,8 @@ error_reporting(0);
 		 $smlimg      			= glb_func_chkvl($srowprodimgd_dtl['prodimgd_simg']);
 		 $smlimgpth   			= $gsml_fldnm.$smlimg;
 		 $bimg      			= glb_func_chkvl($srowprodimgd_dtl['prodimgd_bimg']);
-		 $bimgpth   			= $gbg_fldnm.bimg;
-		 $delimgsts 				= funcDelAllRec('prodimg_dtl','prodimgd_id',$imgid);
+		 $bimgpth   			= $gbg_fldnm.$bimg;
+		 $delimgsts 				= funcDelAllRec($conn,'prodimg_dtl','prodimgd_id',$imgid);
 		 if($delimgsts == 'y'  ){
 			 if(($smlimg != "") && file_exists($smlimgpth)) {
 					unlink($smlimgpth);
@@ -127,7 +127,7 @@ error_reporting(0);
 		$loc .= "&lstprdsts=$lstprdsts";
 	}	
 	$chk  	=  glb_func_chkvl($_REQUEST['chk']); 
-	if(chk!= ""){
+	if($chk!= ""){
 		$loc .= "&chk=$chk";
 	}
 	

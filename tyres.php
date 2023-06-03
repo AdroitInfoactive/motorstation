@@ -63,7 +63,7 @@ $id=$_REQUEST['id'];
 			if ($vehbrndimgnm != '' && file_exists($vehbrndimgpth)) {
 				$vehbrndimgpth = $rtpth . $gusrbrnd_upldpth . $vehbrndimgnm;
 			} else {
-				$vehbrndimgpth = "images/no-image.png";
+				$vehbrndimgpth =$rtpth."products/no-img.png";
 			}
 
 			?>
