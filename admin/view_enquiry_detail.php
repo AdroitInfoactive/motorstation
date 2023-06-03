@@ -40,19 +40,28 @@
 	  $srvctyp =  $rowsgnrlenqry_mst['gnrlenqrym_srvs'];
 	  $srvctyp = explode(",",$srvctyp);
 	  if($srvctyp[0] !=''){
+		$dspval ="Multi Brand Tyre & Tubes Sales";
+	}
+	  if($srvctyp[1] !=''){
 			$dspval ="3D Alignment And checking";
 		}
-		if($srvctyp[1] !=''){
+		if($srvctyp[2] !=''){
 			$dspval .="<br/>Wheel Balancing";
 		}
-		if($srvctyp[2] !=''){
+		if($srvctyp[3] !=''){
 			$dspval .="<br/>Car Wash";
 		}
-		if($srvctyp[3] !=''){
+		if($srvctyp[4] !=''){
 			$dspval .="<br/>Nitrogen Air";
 		}
-		if($srvctyp[4] !=''){
+		if($srvctyp[5] !=''){
 			$dspval .="<br/>General Service";
+		}
+		if($srvctyp[6] !=''){
+			$dspval .="<br/>Personalised Services";
+		}
+		if($srvctyp[7] !=''){
+			$dspval .="<br/>General Check-Up";
 		}
 	}
 	else

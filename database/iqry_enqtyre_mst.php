@@ -15,24 +15,27 @@ error_reporting(0);
 		$service = implode(',', $_POST['srvctyp']);
 		$srvctyp = explode(",",$service);
 		if($srvctyp[0] !=''){
-			$dspval ="3D Alignment And checking";
+			$dspval ="Multi Brand Tyre & Tubes Sales";
 		}
 		if($srvctyp[1] !=''){
-			$dspval .="<br/>Wheel Balancing";
+			$dspval ="3D Alignment And checking";
 		}
 		if($srvctyp[2] !=''){
-			$dspval .="<br/>Car Wash";
+			$dspval .="<br/>Wheel Balancing";
 		}
 		if($srvctyp[3] !=''){
-			$dspval .="<br/>Nitrogen Air";
+			$dspval .="<br/>Car Wash";
 		}
 		if($srvctyp[4] !=''){
-			$dspval .="<br/>General Service";
+			$dspval .="<br/>Nitrogen Air";
 		}
 		if($srvctyp[5] !=''){
-			$dspval .="<br/>Personalised Services";
+			$dspval .="<br/>General Service";
 		}
 		if($srvctyp[6] !=''){
+			$dspval .="<br/>Personalised Services";
+		}
+		if($srvctyp[7] !=''){
 			$dspval .="<br/>General Check-Up";
 		}
 	
