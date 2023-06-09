@@ -16,7 +16,26 @@ include('header.php');
 $brand=$_REQUEST['vehbrnd'];
 $veh_typ=$_REQUEST['type'];
 ?>
+<?php 
+ $sqlprod_mst = "SELECT prodm_vehtypm_id,prodm_id,prodm_name,prodm_brndm_id,prodm_code,prodm_sts,vehtypm_id,vehtypm_name,brndm_id,brndm_name,brndm_img,brndm_zmimg,brndm_sts,vehtypm_sts,prodimgd_prodm_id,prodimgd_id,prodimgd_sts,prodimgd_simg,prodimgd_bimg from prod_mst
+	 LEFT join vehtyp_mst on vehtyp_mst.vehtypm_id=	prod_mst.prodm_vehtypm_id
+	LEFT join brnd_mst on brnd_mst.brndm_id=prod_mst.prodm_brndm_id
+	LEFT join  prodimg_dtl on  prodimg_dtl.prodimgd_prodm_id=prod_mst.prodm_id
+where  prodm_id !='' and prodm_sts ='a' and vehtypm_sts='a' and brndm_sts='a' ";
 
+    if (isset($_REQUEST['vehbrnd']) && (trim($_REQUEST['vehbrnd']) != "")) {
+		$brand = glb_func_chkvl($_REQUEST['vehbrnd']);
+		$sqlprod_mst .= " and brndm_name='$brand' ";
+	}
+    if (isset($_REQUEST['type']) && (trim($_REQUEST['type']) != "")) {
+		$veh_typ = glb_func_chkvl($_REQUEST['type']);
+		$sqlprod_mst .= " and vehtypm_name='$veh_typ' ";
+	}
+  $sqlprod_mst.=" group by prodm_id" ;
+// where  prodm_id !='' and prodm_sts ='a' and vehtypm_sts='a' and brndm_sts='a' and vehtypm_name='$veh_typ' and brndm_name='$brand'
+$rwsprod_mst = mysqli_query($conn, $sqlprod_mst);
+		$prdcnt = mysqli_num_rows($rwsprod_mst);
+        ?>
 
 <!-- slider-area-start  -->
 <section class="page__title-area page__title-height page__title-overlay d-flex align-items-center" data-background="assets/img/inner-banner/products.jpg">
@@ -27,8 +46,12 @@ $veh_typ=$_REQUEST['type'];
                     <div class="breadcrumb-menu">
                         <ul>
                             <li><a href="<?php echo $rtpth; ?>home">Home</a></li>
-                            <li><a href="tyres.php"><span>Brands</span></a></li>
-                            <li><span><?php echo $veh_typ;?></span></li>
+                         <?php  if (isset($_REQUEST['type']) && (trim($_REQUEST['type']) != "")) {?>
+												<li><a href="<?php echo $rtpth; ?>tyres.php?type=<?php echo $veh_typ;?>"><span><?php echo $veh_typ;?></span></a></li>
+												<?php }?>
+														
+                            <!-- <li><a href="<?php echo $rtpth; ?>brands"><span>Brands</span></a></li> -->
+														<li><span><?php echo $brand; ?> </span></li>
                         </ul>
                     </div>
                     <h3 class="page__title mt-20"><?php echo $brand;?></h3>
@@ -39,16 +62,8 @@ $veh_typ=$_REQUEST['type'];
 </section>
 <!-- slider-area-end -->
 
-<?php 
- $sqlprod_mst = "SELECT prodm_vehtypm_id,prodm_id,prodm_name,prodm_brndm_id,prodm_code,prodm_sts,vehtypm_id,vehtypm_name,brndm_id,brndm_name,brndm_img,brndm_zmimg,brndm_sts,vehtypm_sts,prodimgd_prodm_id,prodimgd_id,prodimgd_sts,prodimgd_simg,prodimgd_bimg from prod_mst
-	 LEFT join vehtyp_mst on vehtyp_mst.vehtypm_id=	prod_mst.prodm_vehtypm_id
-	LEFT join brnd_mst on brnd_mst.brndm_id=prod_mst.prodm_brndm_id
-	LEFT join  prodimg_dtl on  prodimg_dtl.prodimgd_prodm_id=prod_mst.prodm_id
-  where 
-		prodm_id !='' and prodm_sts ='a' and vehtypm_sts='a' and brndm_sts='a' and vehtypm_name='$veh_typ' and brndm_name='$brand' group by prodm_id ";
-
-$rwsprod_mst = mysqli_query($conn, $sqlprod_mst);
-		$prdcnt = mysqli_num_rows($rwsprod_mst);
+<?php
+//echo  $sqlprod_mst;
 		if($prdcnt > 0){?>
 <!-- blog__area start -->
 <section class="blog__area pt-90 pb-90 prdt-list">
@@ -85,6 +100,16 @@ $rwsprod_mst = mysqli_query($conn, $sqlprod_mst);
                            <div class="blog__catagory">
                               <span><?php echo $prod_code;?></span>
                            </div>
+                           
+                        </div>
+                        <div class="blog__meta">
+                           <div class="blog__author">
+                              <span><a href="#">Vehicle Type:</a></span>
+                           </div>
+                           <div class="blog__catagory">
+                              <span><?php echo $vehname;?></span>
+                           </div>
+                           
                         </div>
                     </div>
 

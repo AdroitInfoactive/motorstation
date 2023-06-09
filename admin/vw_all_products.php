@@ -362,7 +362,7 @@ include_once ('../includes/inc_fnct_ajax_validation.php');
 										 left join invntry_dtl on invntryd_sizem_id = sizem_id
 									where 
 									     prodm_sts != ''";		*/
-					$sqryprod_mst1  =  "select 
+					$sqryprod_mst1  =  "SELECT 
 										 prodm_id,prodm_code,prodm_name,brndm_name,
 										 prodm_mrp,prodm_op,prodm_typ,prodm_sts,
 										 prodm_prty,brndm_id,vehtypm_name,prodm_vehtypm_id

@@ -117,7 +117,7 @@
 		autoplay: {
 			delay: 6000,
 		},
-		autoplay:false,
+		autoplay:true,
 		navigation: {
 			nextEl: ".swiper-button-next",
 			prevEl: ".swiper-button-prev",

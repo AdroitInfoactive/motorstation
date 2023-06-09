@@ -118,7 +118,7 @@
         <div class="row justify-content-center">
           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
             <div class="footer__copyright-text">
-              <p>© 2022 Copyright By Motor Station, All Rights Reserved</p>
+              <p>© 2023 Copyright By Motor Station, All Rights Reserved</p>
 
 
             </div>

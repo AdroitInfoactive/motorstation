@@ -21,13 +21,13 @@ $prd_id = $_REQUEST['prd_id'];
 include_once ('includes/inc_fnct_ajax_validation.php');
 ?>
 <!-- slider-area-start  -->
-<section class="page__title-area page__title-height page__title-overlay d-flex align-items-center" data-background="assets/img/inner-banner/feedback.jpg">
+<section class="page__title-area page__title-height page__title-overlay d-flex align-items-center" data-background="assets/img/inner-banner/about-us2.jpg">
 	<div class="container">
 		<div class="row">
 			<div class="col-xxl-12">
 				<div class="page__title-wrapper mt-100">
 					<div class="breadcrumb-menu">
-					<ul>
+						<ul>
 							<li><a href="<?php echo $rtpth; ?>home">Home</a></li>
 						<?php
 							if (isset($_REQUEST['type']) && (trim($_REQUEST['type']) != "")) {?>
@@ -49,7 +49,6 @@ include_once ('includes/inc_fnct_ajax_validation.php');
 
 
 <?php
-
 $sqlprod_mst = "SELECT prodm_vehtypm_id,prodm_id,prodm_name,prodm_brndm_id,prodm_code,prodm_sts,vehtypm_id,vehtypm_name,brndm_id,brndm_name,brndm_img,brndm_zmimg,brndm_sts,vehtypm_sts,prodimgd_prodm_id,prodimgd_id,prodimgd_sts,prodimgd_simg,prodimgd_bimg,prodm_descone,prodm_desctwo from prod_mst
 	 LEFT join vehtyp_mst on vehtyp_mst.vehtypm_id=	prod_mst.prodm_vehtypm_id
 	LEFT join brnd_mst on brnd_mst.brndm_id=prod_mst.prodm_brndm_id

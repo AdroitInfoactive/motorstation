@@ -77,7 +77,7 @@ include_once "includes/inc_config.php";	//path config file
                                 <ul>
                                     <li><a href="<?php echo $rtpth; ?>home">Home</a></li>
                                     <li><a href="<?php echo $rtpth; ?>about">About Us</a></li>
-                                    <!-- <li><a href="<?php echo $rtpth; ?>brands">Products</a></li> -->
+                                    <!-- <li><a href="<?php echo $rtpth; ?>brands">Brands</a></li> -->
                                     <li class="has-dropdown"><a href="#">Tyres</a>
                                         <ul class="sub-menu">
                                             <?php 
@@ -88,9 +88,9 @@ include_once "includes/inc_config.php";	//path config file
                                                $veh_id= $srowvehtyp_mst['vehtypm_id'];
 
                                            ?>
-                                           
-                                            <li><a href="<?php echo $rtpth;?>tyres.php?type=<?php echo $veh_name;?>&id=<?php echo $veh_id;?>"><?php echo $veh_name;?></a></li>
-                                         
+																					<!--                                            
+                                            <li><a href="<?php echo $rtpth;?>tyres.php?type=<?php echo $veh_name;?>&id=<?php echo $veh_id;?>"><?php echo $veh_name;?></a></li> -->
+																						<li><a href="<?php echo $rtpth;?>tyres.php?type=<?php echo $veh_name;?>"><?php echo $veh_name;?></a></li>
                                             <?php } ?>
                                         </ul>
                                     </li>

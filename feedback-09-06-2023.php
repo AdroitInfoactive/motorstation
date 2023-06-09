@@ -189,7 +189,7 @@ if(isset($_POST['btnfedenq']) && ($_POST['btnfedenq'] != "") &&
 							{?>
 						
 								<script>
-								location.href='thankyou-for-feedback.php';
+								location.href='thankyou.php';
 							</script>
 							
 							<?php 	}

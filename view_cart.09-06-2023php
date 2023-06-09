@@ -65,10 +65,10 @@ if (isset($_SESSION['prodid']) && $_SESSION['prodid'] != "") {
                     <thead>
                       <tr bgcolor="#f1f1f1">
                         <?php /*?> <th width='6%'  >SL.No.</th><?php */ ?>
-                        <th width='40%'>Product Image</th>
-                        <th width='40%'>Product Code</th>
+                        <th width='10%'>Product Image</th>
+                        <th width='10%'>Product Code</th>
                         <?php /*?> <th width='15%'  >Product Name</th>	<?php */ ?>
-                        <th width='20%'>Remove</th>
+                        <th width='10%'>Remove</th>
                       </tr>
                     </thead>
                     <?php
@@ -99,15 +99,10 @@ if (isset($_SESSION['prodid']) && $_SESSION['prodid'] != "") {
                     ?>
                       <tr>
                         <?php /*?> <th width='6%'  ><?php echo $i;?></th><?php */ ?>
-                        <td><img src='<?php echo $smlImgPth; ?>' width="78" height="78" border="0" alt="" /></td>
-                        <td class='text-white' >Name: <b><?php echo $prod_nm . "</b><br>Code: <b>" . $prod_code; ?></b></td>
+                        <td width='10%'><img src='<?php echo $smlImgPth; ?>' width="78" height="78" border="0" alt="" /></td>
+                        <td width='10%'>Name: <b><?php echo $prod_nm . "</b><br>Code: <b>" . $prod_code; ?></b></td>
                         <?php /*?> <th width='15%'  ><?php echo $items['name'];?></th>		<?php */ ?>
-                        <td>
-                          <div class='d-flex justify-content-center align-items-ceenter text-white'>
-                          <a href='' onclick="del_crt_prdt(<?php echo $i; ?>)"><i class="fa fa-remove"></i></a>
-                          </div>
-                          
-                        </td>
+                        <td width='10%'><a href='' onclick="del_crt_prdt(<?php echo $i; ?>)"><i class="fa fa-remove"></i></a></td>
                       </tr>
                     <?php
                       $i++;
