@@ -53,14 +53,14 @@
               <div class="footer__links">
                 <ul>
 
-                  <li><a href="#">Multi Brand Tyre & Tubes Sales</a></li>
-                  <li><a href="#">3D Alignment & Checking</a></li>
-                  <li><a href="#">Wheel Balancing</a></li>
-                  <li><a href="#">Car WashM</a></li>
-                  <li><a href="#">Nitrogen Air</a></li>
-                  <li><a href="#">General Service</a></li>
-                  <li><a href="#">Personalised Services</a></li>
-                  <li><a href="#">General Check-Up</a></li>
+                  <li><a href="<?php echo $rtpth;?>services">Multi Brand Tyre & Tubes Sales</a></li>
+                  <li><a href="<?php echo $rtpth;?>services">3D Alignment & Checking</a></li>
+                  <li><a href="<?php echo $rtpth;?>services">Wheel Balancing</a></li>
+                  <li><a href="<?php echo $rtpth;?>services">Car Wash</a></li>
+                  <li><a href="<?php echo $rtpth;?>services">Nitrogen Air</a></li>
+                  <li><a href="<?php echo $rtpth;?>services">General Service</a></li>
+                  <li><a href="<?php echo $rtpth;?>services">Personalised Services</a></li>
+                  <li><a href="<?php echo $rtpth;?>services">General Check-Up</a></li>
 
 
                 </ul>
