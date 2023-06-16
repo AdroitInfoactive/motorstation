@@ -479,4 +479,18 @@
 			return 'All';
 		}	
 	}
+
+	function funcStrRplc($prmstr)
+{
+	$gnrtstr = strtolower(str_replace(' ', '-', $prmstr));
+	$gnrtstr = strtolower(str_replace('.', '-', $gnrtstr));
+	$gnrtstr = strtolower(str_replace(':', '-', $gnrtstr));
+	$gnrtstr = strtolower(str_replace(',', '-', $gnrtstr));
+	return $gnrtstr;
+}
+function funcStrUnRplc($prmstr)
+{
+	$gnrtstr = ucwords(str_replace('-', ' ', $prmstr));
+	return $gnrtstr;
+}
 ?>

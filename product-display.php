@@ -19,6 +19,37 @@ $prd_code = $_REQUEST['prd_code'];
 $prd_name = $_REQUEST['prd_name'];
 $prd_id = $_REQUEST['prd_id'];
 include_once ('includes/inc_fnct_ajax_validation.php');
+$sqlprod_mst = "SELECT prodm_vehtypm_id,prodm_id,prodm_name,prodm_brndm_id,prodm_code,prodm_sts,vehtypm_id,vehtypm_name,brndm_id,brndm_name,brndm_img,brndm_zmimg,brndm_sts,vehtypm_sts,prodimgd_prodm_id,prodimgd_id,prodimgd_sts,prodimgd_simg,prodimgd_bimg,prodm_descone,prodm_desctwo from prod_mst
+	 LEFT join vehtyp_mst on vehtyp_mst.vehtypm_id=	prod_mst.prodm_vehtypm_id
+	LEFT join brnd_mst on brnd_mst.brndm_id=prod_mst.prodm_brndm_id
+	LEFT join  prodimg_dtl on  prodimg_dtl.prodimgd_prodm_id=prod_mst.prodm_id
+  where 
+		prodm_id !='' and prodm_sts ='a' and vehtypm_sts='a' and brndm_sts='a' ";
+		// and vehtypm_name='$veh_typ' and brndm_name='$brand' and prodm_code='$prd_code' and prodm_name='$prd_name' group by  prodm_id ";
+
+
+		if (isset($_REQUEST['vehbrnd']) && (trim($_REQUEST['vehbrnd']) != "")) {
+			$brand = glb_func_chkvl($_REQUEST['vehbrnd']);
+			$brand = funcStrUnRplc($brand);
+			$sqlprod_mst .= " and brndm_name='$brand' ";
+		}
+		if (isset($_REQUEST['type']) && (trim($_REQUEST['type']) != "")) {
+			$veh_typ = glb_func_chkvl($_REQUEST['type']);
+			$veh_typ = funcStrUnRplc($veh_typ);
+			$sqlprod_mst .= " and vehtypm_name='$veh_typ' ";
+		}
+		if (isset($_REQUEST['prd_code']) && (trim($_REQUEST['prd_code']) != "") || isset($_REQUEST['prd_name']) && (trim($_REQUEST['prd_name']) != "") ) {
+			$prd_code = glb_func_chkvl($_REQUEST['prd_code']);
+			$prd_code = funcStrUnRplc($prd_code);
+			$prd_name = glb_func_chkvl($_REQUEST['prd_name']);
+			$prd_name = funcStrUnRplc($prd_name);
+			$prd_id = glb_func_chkvl($_REQUEST['prd_id']);
+			$sqlprod_mst .= " and prodm_code='$prd_code' and prodm_name='$prd_name' ";
+		}
+		$sqlprod_mst.=" group by prodm_id" ;
+
+$rwsprod_mst = mysqli_query($conn, $sqlprod_mst);
+$prdcnt = mysqli_num_rows($rwsprod_mst);
 ?>
 <!-- slider-area-start  -->
 <section class="page__title-area page__title-height page__title-overlay d-flex align-items-center" data-background="assets/img/inner-banner/feedback.jpg">
@@ -50,33 +81,7 @@ include_once ('includes/inc_fnct_ajax_validation.php');
 
 <?php
 
-$sqlprod_mst = "SELECT prodm_vehtypm_id,prodm_id,prodm_name,prodm_brndm_id,prodm_code,prodm_sts,vehtypm_id,vehtypm_name,brndm_id,brndm_name,brndm_img,brndm_zmimg,brndm_sts,vehtypm_sts,prodimgd_prodm_id,prodimgd_id,prodimgd_sts,prodimgd_simg,prodimgd_bimg,prodm_descone,prodm_desctwo from prod_mst
-	 LEFT join vehtyp_mst on vehtyp_mst.vehtypm_id=	prod_mst.prodm_vehtypm_id
-	LEFT join brnd_mst on brnd_mst.brndm_id=prod_mst.prodm_brndm_id
-	LEFT join  prodimg_dtl on  prodimg_dtl.prodimgd_prodm_id=prod_mst.prodm_id
-  where 
-		prodm_id !='' and prodm_sts ='a' and vehtypm_sts='a' and brndm_sts='a' ";
-		// and vehtypm_name='$veh_typ' and brndm_name='$brand' and prodm_code='$prd_code' and prodm_name='$prd_name' group by  prodm_id ";
 
-
-		if (isset($_REQUEST['vehbrnd']) && (trim($_REQUEST['vehbrnd']) != "")) {
-			$brand = glb_func_chkvl($_REQUEST['vehbrnd']);
-			$sqlprod_mst .= " and brndm_name='$brand' ";
-		}
-		if (isset($_REQUEST['type']) && (trim($_REQUEST['type']) != "")) {
-			$veh_typ = glb_func_chkvl($_REQUEST['type']);
-			$sqlprod_mst .= " and vehtypm_name='$veh_typ' ";
-		}
-		if (isset($_REQUEST['prd_code']) && (trim($_REQUEST['prd_code']) != "") || isset($_REQUEST['prd_name']) && (trim($_REQUEST['prd_name']) != "") ) {
-			$prd_code = glb_func_chkvl($_REQUEST['prd_code']);
-			$prd_name = glb_func_chkvl($_REQUEST['prd_name']);
-			$prd_id = glb_func_chkvl($_REQUEST['prd_id']);
-			$sqlprod_mst .= " and prodm_code='$prd_code' and prodm_name='$prd_name' ";
-		}
-		$sqlprod_mst.=" group by prodm_id" ;
-
-$rwsprod_mst = mysqli_query($conn, $sqlprod_mst);
-$prdcnt = mysqli_num_rows($rwsprod_mst);
 if ($prdcnt > 0) { ?>
 	<!-- blog__area start -->
 	<section class="blog__area pt-90 pb-90 prdt-list">
@@ -256,7 +261,7 @@ if ($prdcnt > 0) { ?>
 		if(prodid!="")
 		{
 			// debugger;
-			var url = "add_crt.php?prodid="+prodid+"&typ=a";
+			var url = "<?php echo $rtpth; ?>add_crt.php?prodid="+prodid+"&typ=a";
 			xmlHttp	= GetXmlHttpObject(stateChanged);
 			xmlHttp.open("GET", url , true);
 			xmlHttp.send(null);
@@ -272,7 +277,7 @@ if ($prdcnt > 0) { ?>
 			{
 				if(temp == 'y')
 				{
-					location.href = "view_cart.php";
+					location.href = "<?php echo $rtpth; ?>enquiry-list";
 				}
 				else
 				{

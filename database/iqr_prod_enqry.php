@@ -126,7 +126,7 @@
 							{
 								?>
 								<script>
-								location.href='error.php';
+								location.href='error';
 							</script>
 							<?php
 							}

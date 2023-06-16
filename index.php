@@ -400,9 +400,13 @@ if ($cnt_recs1 > 0) { ?>
                                     extremely pleased with the service I received. They did a 3D alignment and checking
                                     of my car and it was done quickly and efficiently.  ”</p>
                                 <div class="review__info mt-30">
-                                    <a href="#"><img src="assets/img/author/01.png" alt=""></a>
+                                    <!-- <a href="#"><img src="<?php echo $rtpth; ?>assets/img/author/01.png" alt=""></a> -->
+                                    <img src="<?php echo $rtpth; ?>assets/img/author/01.png" alt="">
                                     <div class="client__content">
-                                        <h5 class="client__name"><a href="#">Arjun Kumar</a></h5>
+                                        <h5 class="client__name">
+                                            <!-- <a href="#">Arjun Kumar</a> -->
+                                            Arjun Kumar
+                                        </h5>
                                         <div class="client__designation">
                                             <p>Hyderabad</p>
                                         </div>
@@ -420,9 +424,9 @@ if ($cnt_recs1 > 0) { ?>
                                     knowledgeable. They provided me with a comprehensive assessment of the problem and
                                     offered a variety of solutions to get my car back on the road. ”</p>
                                 <div class="review__info mt-30">
-                                    <a href="#"><img src="assets/img/author/01.png" alt=""></a>
+                                    <img src="<?php echo $rtpth; ?>assets/img/author/01.png" alt="">
                                     <div class="client__content">
-                                        <h5 class="client__name"><a href="#">Priyanka Reddy</a></h5>
+                                        <h5 class="client__name">Priyanka Reddy</h5>
                                         <div class="client__designation">
                                             <p>Secunderabad</p>
                                         </div>
@@ -440,9 +444,9 @@ if ($cnt_recs1 > 0) { ?>
                                 <p class="review__text">“ The work was completed quickly and to a high standard. I would
                                     highly recommend Motor station for any car repair needs. ”</p>
                                 <div class="review__info mt-30">
-                                    <a href="#"><img src="assets/img/author/01.png" alt=""></a>
+                                    <img src="<?php echo $rtpth; ?>assets/img/author/01.png" alt="">
                                     <div class="client__content">
-                                        <h5 class="client__name"><a href="#">Pritam Mallick</a></h5>
+                                        <h5 class="client__name">Pritam Mallick</h5>
                                         <div class="client__designation">
                                             <p>Rangareddy</p>
                                         </div>
@@ -716,6 +720,7 @@ if ($carbrndcnt > 0) { ?>
 							while ($rowsvehbrnd_mst = mysqli_fetch_assoc($rwsvehbrnd_mst)) {
 								$brnd_id = $rowsvehbrnd_mst['brndm_id'];
 								$brnd_name = $rowsvehbrnd_mst['brndm_name'];
+                                $brnd_name = funcStrRplc($brnd_name);
 								$vehbrndimgnm = $rowsvehbrnd_mst['brndm_img'];
 
 								$vehbrndimgpth = $gusrbrnd_upldpth . $vehbrndimgnm;
@@ -728,7 +733,8 @@ if ($carbrndcnt > 0) { ?>
 							?>
 
                         <div class="brand__slider-item swiper-slide">
-                        <a href="<?php echo $rtpth;?>products.php?vehbrnd=<?php echo $brnd_name ?>"><img src="<?php echo 	$vehbrndimgpth; ?> " class="w-100" alt=""></a>
+                        <a href="<?php echo $rtpth;?>brands/<?php echo $brnd_name ?>"><img src="<?php echo 	$vehbrndimgpth; ?> " class="w-100" alt=""></a>
+                        <!-- <a href="<?php echo $rtpth;?>products.php?vehbrnd=<?php echo $brnd_name ?>"><img src="<?php echo 	$vehbrndimgpth; ?> " class="w-100" alt=""></a> -->
                         </div>
 
                         <?php } ?>

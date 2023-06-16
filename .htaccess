@@ -8,30 +8,37 @@ DirectoryIndex index.html index.php
 
 ErrorDocument 404 /404.php
 
-
-
-
 RewriteRule ^home$ index.php [L]
 RewriteRule ^about$ about-us.php [L]
 RewriteRule ^brands$ brands.php [L]
 RewriteRule ^services$ services.php [L]
 RewriteRule ^feedback$ feedback.php [L]
 RewriteRule ^contact$ contact.php [L]
+RewriteRule ^enquiry-list$ view_cart.php [L]
 
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^brands/([A-Za-z0-9-_]+)$ products.php?vehbrnd=$1 [L,QSA]
 
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^([A-Za-z0-9-_]+)/([A-Za-z0-9-_]+)$ products.php?type=$1&vehbrnd=$2 [L,QSA]
 
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^([A-Za-z0-9-_]+)$ tyres.php?type=$1 [L,QSA]
 
-
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^([A-Za-z0-9-()]+)/([A-Za-z0-9-()]+)/([A-Za-z0-9-_()]+)/([A-Za-z0-9-_()]+)/([A-Za-z0-9-_()]+)$ product-display.php?type=$1&vehbrnd=$2&prd_code=$3&prd_name=$4&prd_id=$5 [QSA,L]
 
 
 RewriteRule ^error$ error.php [L]
 RewriteRule ^404error$ 404.php [L]
 
-
-
 RewriteEngine on
-rewritecond %{http_host} ^futureproperty.in [nc]
-rewriterule ^(.*)$ https://www.futureproperty.in/$1 [r=301,nc]
+rewritecond %{http_host} ^motorstation.in [nc]
+rewriterule ^(.*)$ https://www.motorstation.in/$1 [r=301,nc]
 
 RewriteEngine On
 RewriteCond %{HTTPS} !=on
